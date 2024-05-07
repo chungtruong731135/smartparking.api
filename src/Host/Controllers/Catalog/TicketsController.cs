@@ -35,7 +35,7 @@ public class TicketsController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPost("{id:guid}")]
     [OpenApiOperation("Update a ticket.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateTicketRequest request, Guid id)
     {

@@ -27,8 +27,6 @@ public class UpdateTicketRequestValidator : AbstractValidator<UpdateTicketReques
 
         RuleFor(x => x.CardNumber).NotEmpty().WithMessage("CardNumber is required.");
 
-        RuleFor(x => x.Type).NotEmpty().WithMessage("Type is required.");
-
     }
 }
 
