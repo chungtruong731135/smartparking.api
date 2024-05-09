@@ -22,4 +22,3 @@ public class EventVehicleDto : IDto
     public string? Description { get; set; }
     public int? Status { get; set; }
 }
-

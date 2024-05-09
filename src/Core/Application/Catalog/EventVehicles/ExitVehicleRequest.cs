@@ -17,13 +17,15 @@ public class ExitVehicleRequestHandler : IRequestHandler<ExitVehicleRequest, Res
     private readonly IRepository<Branch> _branchRepository;
     private readonly IRepository<BranchUser> _branchUserRepository;
     private readonly IRepository<Ticket> _ticketRepository;
+    private readonly IRepository<CheckoutVehicleEvent> _checkoutRepository;
 
-    public ExitVehicleRequestHandler(IRepository<EventVehicle> repository, IRepository<Branch> branchRepository, IRepository<BranchUser> branchUserRepository, IRepository<Ticket> ticketRepository)
+    public ExitVehicleRequestHandler(IRepository<EventVehicle> repository, IRepository<Branch> branchRepository, IRepository<BranchUser> branchUserRepository, IRepository<Ticket> ticketRepository, IRepository<CheckoutVehicleEvent> checkoutRepository)
     {
         _repository = repository;
         _branchRepository = branchRepository;
         _branchUserRepository = branchUserRepository;
         _ticketRepository = ticketRepository;
+        _checkoutRepository = checkoutRepository;
     }
 
     public async Task<Result<Guid>> Handle(ExitVehicleRequest request, CancellationToken cancellationToken)
@@ -46,11 +48,24 @@ public class ExitVehicleRequestHandler : IRequestHandler<ExitVehicleRequest, Res
 
         ticket.IsActive = false;
 
+        var utcNow = DateTime.UtcNow;
+        var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+        var vietnamTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, timeZoneInfo);
+
+        var checkoutEvent = new CheckoutVehicleEvent(
+            eventVehicleId: eventVehicle.Id,
+            checkoutDate: vietnamTime,
+            amount: 3000,
+            plateNumber: eventVehicle.PlateNumber,
+            branchId: eventVehicle.BranchId
+        );
+
+
         await _repository.UpdateAsync(eventVehicle, cancellationToken);
         await _ticketRepository.UpdateAsync(ticket, cancellationToken);
+        await _checkoutRepository.AddAsync(checkoutEvent, cancellationToken);
 
         return Result<Guid>.Success(eventVehicle.Id);
     }
 
 }
-

@@ -55,7 +55,6 @@ public class EnterVehicleRequestHandler : IRequestHandler<EnterVehicleRequest, R
 
         string plateImagePath = await _file.UploadAsync<EventVehicle>(request.PlateImage, FileType.Image, cancellationToken);
 
-
         var eventVehicle = new EventVehicle(
             request.PlateNumber,
             request.DetectedPlateNumber,

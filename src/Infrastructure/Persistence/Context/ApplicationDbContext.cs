@@ -25,6 +25,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<VehicleBlacklist> VehicleBlacklists { get; set; }
     public DbSet<VehicleMonthlyInvoice> VehicleMonthlyInvoices { get; set; }
     public DbSet<VehicleType> VehicleTypes { get; set; }
+    public DbSet<CheckoutVehicleEvent> CheckoutVehicleEvent { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

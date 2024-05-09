@@ -232,3 +232,32 @@ public class VehicleTypeConfig : IEntityTypeConfiguration<VehicleType>
                 .HasMaxLength(1000);
     }
 }
+
+public class CheckoutVehicleEventConfig : IEntityTypeConfiguration<CheckoutVehicleEvent>
+{
+    public void Configure(EntityTypeBuilder<CheckoutVehicleEvent> builder)
+    {
+        builder.IsMultiTenant();
+
+        builder
+            .Property(ve => ve.EventVehicleId)
+                .IsRequired();
+
+        builder
+            .Property(ve => ve.CheckoutDate)
+                .IsRequired();
+
+        builder
+            .Property(ve => ve.Amount)
+                .IsRequired()
+                .HasColumnType("decimal(18, 2)");
+
+        builder
+            .Property(ve => ve.PlateNumber)
+                .HasMaxLength(50);
+
+        builder
+            .Property(ve => ve.BranchId)
+                .IsRequired();
+    }
+}

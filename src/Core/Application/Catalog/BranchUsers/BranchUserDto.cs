@@ -21,4 +21,3 @@ public class BranchUserDto : IDto
         UserName = userName;
     }
 }
-
