@@ -22,7 +22,6 @@ public class Ticket : AuditableEntity, IAggregateRoot
     public bool? IsLose { get; set; }
     public DateTime? LoseDate { get; set; }
     public string? LoseNote { get; set; }
-      
     public string? Description { get; set; }
     public Guid? VehicleTypeId { get; set; }
     public Guid? BranchId { get; set; }

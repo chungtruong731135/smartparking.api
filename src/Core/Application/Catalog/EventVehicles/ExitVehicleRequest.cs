@@ -60,7 +60,6 @@ public class ExitVehicleRequestHandler : IRequestHandler<ExitVehicleRequest, Res
             branchId: eventVehicle.BranchId
         );
 
-
         await _repository.UpdateAsync(eventVehicle, cancellationToken);
         await _ticketRepository.UpdateAsync(ticket, cancellationToken);
         await _checkoutRepository.AddAsync(checkoutEvent, cancellationToken);

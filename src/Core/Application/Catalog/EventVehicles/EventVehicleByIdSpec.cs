@@ -10,4 +10,3 @@ public class EventVehicleByIdSpec : Specification<EventVehicle, EventVehicleDto>
     public EventVehicleByIdSpec(Guid id) =>
         Query.Where(ev => ev.Id == id);
 }
-
