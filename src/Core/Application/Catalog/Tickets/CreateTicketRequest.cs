@@ -21,7 +21,6 @@ public class CreateTicketRequestValidator : AbstractValidator<CreateTicketReques
     {
         RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.");
         RuleFor(x => x.CardNumber).NotEmpty().WithMessage("CardNumber is required.");
-        RuleFor(x => x.Type).NotEmpty().WithMessage("Type is required.");
         RuleFor(x => x.BranchId).NotEmpty().WithMessage("BranchId is required.");
     }
 }
