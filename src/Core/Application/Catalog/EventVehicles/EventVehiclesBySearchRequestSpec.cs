@@ -18,5 +18,10 @@ public class EventVehiclesBySearchRequestSpec : EntitiesByPaginationFilterSpec<E
         {
             Query.Where(ev => ev.PlateNumber.ToLower().Contains(request.PlateNumber.ToLower()));
         }
+
+        if (request.TicketId.HasValue)
+        {
+            Query.Where(ev => ev.TicketId == request.TicketId.Value);
+        }
     }
 }

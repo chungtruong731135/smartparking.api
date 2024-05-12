@@ -21,7 +21,9 @@ public class CheckoutVehicleEventsAmountSpec : Specification<CheckoutVehicleEven
 
         if (request.ToDate.HasValue)
         {
-            Query.Where(e => e.CheckoutDate <= request.ToDate.Value);
+            // Adjust ToDate to include the entire day
+            var toDateEnd = request.ToDate.Value.Date.AddDays(1);
+            Query.Where(e => e.CheckoutDate <= toDateEnd);
         }
     }
 }

@@ -10,6 +10,7 @@ public class SearchEventVehiclesRequest : PaginationFilter, IRequest<PaginationR
     public Guid? BranchId { get; set; }
     public string LaneDirection { get; set; }
     public string? PlateNumber { get; set; }
+    public Guid? TicketId { get; set; }
 }
 
 public class SearchEventVehiclesRequestHandler : IRequestHandler<SearchEventVehiclesRequest, PaginationResponse<EventVehicleDto>>

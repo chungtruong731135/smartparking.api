@@ -18,4 +18,12 @@ public class CheckoutVehicleEventsController : VersionedApiController
     {
         return Mediator.Send(request);
     }
+
+    [HttpPost("calculate-monthly-total-amount")]
+    [OpenApiOperation("Calculate monthly total amount.", "Calculate the total amount for each month for the last 5 months.")]
+    public Task<Result<List<MonthlyTotalAmountDto>>> CalculateMonthlyTotalAmount(CalculateMonthlyTotalAmountRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
 }

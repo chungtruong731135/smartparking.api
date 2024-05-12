@@ -12,6 +12,10 @@ public class VehicleBlacklistsByBranchIdSpec : EntitiesByPaginationFilterSpec<Ve
     {
         Query
             .Where(v => v.BranchId.Equals(request.BranchId!.Value), request.BranchId.HasValue);
+
+        if (!string.IsNullOrEmpty(request.PlateNumber))
+        {
+            Query.Where(e => e.PlateNumber.ToLower().Contains(request.PlateNumber.ToLower()));
+        }
     }
 }
-

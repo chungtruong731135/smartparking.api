@@ -8,6 +8,7 @@ namespace TD.WebApi.Application.Catalog.VehicleBlacklists;
 public class SearchVehicleBlacklistsRequest : PaginationFilter, IRequest<PaginationResponse<VehicleBlacklistDto>>
 {
     public Guid? BranchId { get; set; }
+    public string? PlateNumber { get; set; }
 }
 
 public class SearchVehicleBlacklistsRequestHandler : IRequestHandler<SearchVehicleBlacklistsRequest, PaginationResponse<VehicleBlacklistDto>>
